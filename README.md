@@ -108,7 +108,7 @@ void print_tips() {
      double a, b,c;
      // 使用scanf的返回值
      if(scanf("%lf %lf %lf",&a,&b,&c)<3){
-         printf("输入错误");
+         printf("Input error!");
          // return; 表示函数没有返回值，并且提前结束函数运行。
          return;
      }
@@ -117,6 +117,35 @@ void print_tips() {
      peintf("%lf",minValue);
   }
   ```
-##### 2.3 函数调用执行过程
+##### 2.3 函数调用执行过程（重要）
+一般6个步骤：
+1. 为函数的形式参数分配内存。
+2. 计算实参表达式的值，并将实参表达式的值赋给对应的形参。
+3. 为函数的局部变量分配内存空间。
+4. 执行函数体内的语句序列。
+5. 函数体执行完，或执行了函数体内的return语句（如果return是表达式，计算后作为函数返回值），释放这次函数调用分配的全部内存空间（一般不会清零）。
+6. 将函数返回值（如果有）作为函数调用的结果，此那个函数调用处继续执行。
 
-##### 2.3 函数调用执行过程
+##### 2.3 函数值传递（重要）
+C语言规定，实参对形参的数据传递是"值传递"，即单向传递。如果实参也是变量，则实参和形参是不同的变量。程序示例如下：
+```c
+#include <stdio.h>
+void func(int x, int y){
+   x += 10;
+   y += 10;
+   printf("In func, formal parameters x=%d, y=%d.\n",x,y);
+}
+int main(){
+   int x=5,y=8;
+   printf("In main, initial value x=%d, y=%d.\n",x,y);
+   func(x,y);
+   printf("In main, After calling the function, real parameters x=%d, y=%d.\n",x,y);
+   return 0;
+}
+/**
+  * 程序运行结果
+  * In main, initial value x=5, y=8.
+  * In func, formal parameters x=15, y=18.
+  * In main, After calling the function, real parameters x=5, y=8.
+  */
+```
