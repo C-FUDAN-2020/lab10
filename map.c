@@ -41,7 +41,7 @@ void printMap(int map[][COL]){
 }
 
 /**
- * cout its active neighbors
+ * count its active neighbors
  */
 int countAliveNeighbors(int map[][COL], int x, int y){
     // TODO: complete the function definition
@@ -56,6 +56,5 @@ void updateMap(int map[][COL]){
     for(int i = 0; i < ROW; i++)
         for(int j = 0; j < COL; j++)
             aliveNeighbors[i][j] = countAliveNeighbors(map, i, j);
-
     // TODO: update the map with aliveNeightbors
 }
