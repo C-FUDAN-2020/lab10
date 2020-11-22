@@ -61,7 +61,7 @@ double min(double x, double y){
 }
 
 /**
-  * 返回类型是 void （函数没有返回值）
+  * 返回类型是 void （函数没有返回值，不代表没有 return 语句）
   * 函数名是 print_tips
   * 没有形式参数
   */
@@ -92,7 +92,7 @@ void print_tips() {
 
 - 函数调用作为独立的语句
 
-  如果函数调用知识利用函数所完成的功能，不关心函数的返回结果（函数可能有返回结果）。那么函数调用可以作为独立的语句。如
+  如果函数调用只是利用函数所完成的功能，不关心函数的返回结果（函数可能有返回结果）。那么函数调用可以作为独立的语句。如
   ```c
   // 实际上函数scanf和printf都具有返回值
   int N;
@@ -100,6 +100,23 @@ void print_tips() {
   printf("%d",N * 4 + 2);
   ```
 
+- 函数调用出现在表达式中
+
+  这种情况表示会利用函数的返回值进行下一步的操作。如
+  ```c
+  void getMinValue(){
+     double a, b,c;
+     // 使用scanf的返回值
+     if(scanf("%lf %lf %lf",&a,&b,&c)<3){
+         printf("输入错误");
+         // return; 表示函数没有返回值，并且提前结束函数运行。
+         return;
+     }
+     // 使用min的返回值
+     double minValue = min(a,min(b,c));
+     peintf("%lf",minValue);
+  }
+  ```
 ##### 2.3 函数调用执行过程
 
 ##### 2.3 函数调用执行过程
